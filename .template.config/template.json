@@ -1,8 +1,23 @@
 {
     "$schema": "http://json.schemastore.org/template",
-    "author": "StockportGovUK",
-    "classifications": [ "Common", "Classlib" ],
-    "identity": "StockportGovUK.ServiceApi",
-    "name": "StockportGovUK service API",
-    "shortName": "stockportapi"
+    "author": "Jon Hadley, Colin Lees, Jon Chiles",
+    "classifications": ["WebApi"],
+    "identity": "StockportGovUK.BoilerPlate.WebApi",
+    "name": "SMBC WebApi boilerplate",
+    "shortName": "smbc-webapi",
+    "preferNameDirectory": true,
+    "tags": {
+        "language": "C#",       
+        "type":"project"
+    },
+    "sourceName": "boilerplate",
+    "sources": [
+        {
+        "modifiers": [
+                {
+                "exclude": [ ".vs/**", ".git/**", ".vscode/**", "obj/**", "bin/**" ]
+                }
+            ]
+        }
+    ]
 }
