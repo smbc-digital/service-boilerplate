@@ -1,6 +1,6 @@
 # Stockport WebAPI boilerplate.
 
-A standard boilerplate used to generate Restful micro services with default Stockport setup and behaviours.
+This is the basis of a [custom .Net new template](https://docs.microsoft.com/en-gb/dotnet/core/tools/custom-templates) and can be used to generate restful WebApi project with default StockportGovUK setup and behaviours enabled.
 
 ## Installation
 
