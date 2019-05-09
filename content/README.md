@@ -6,8 +6,9 @@ This is the basis of a [custom .Net new template](https://docs.microsoft.com/en-
 
 To register this application template with the dotnet cli 
 
-* Navigate to the boiler root boilerplate folder
-* install the the boilerplate using;
+* Clone this repository to a folder locally
+* Navigate to the root boilerplate folder
+* install the the boilerplate using the --install switch
 
 ```
 dotnet new --install .
