@@ -25,7 +25,7 @@ namespace boilerplate
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info { Title = "Address finder API", Version = "v1" });
+                c.SwaggerDoc("v1", new Info { Title = "boilerplate API", Version = "v1" });
             });
 
             services.AddHttpClient();
@@ -47,7 +47,7 @@ namespace boilerplate
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Address finder API");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "boilderplate API");
             });
             app.UseMvc();
         }
