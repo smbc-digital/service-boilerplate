@@ -7,6 +7,9 @@
       Creates a basic restful WebApi project with default StockportGovUK setup and behaviours enabled
     </description>
     <authors>Jon Hadley, Colin Lees</authors>
+    <projectUrl>
+      https://github.com/smbc-digital/service-boilerplate
+    </projectUrl>
     <packageTypes>
       <packageType name="Template" />
     </packageTypes>
