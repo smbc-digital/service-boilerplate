@@ -1,6 +1,6 @@
 # Stockport WebAPI boilerplate.
 
-This is the basis of a [custom .Net new template](https://docs.microsoft.com/en-gb/dotnet/core/tools/custom-templates) and can be used to generate restful WebApi project with default StockportGovUK setup and behaviours enabled.
+This is the basis of a [custom .Net new template](https://docs.microsoft.com/en-gb/dotnet/core/tools/custom-templates) it is used to generate restful WebApi project with default StockportGovUK setup and behaviours enabled.
 
 ## Installation from Nuget
 
@@ -11,7 +11,7 @@ dotnet new --install StockportGovUK.AspNet.BoilerPlate.Service
 ```
 
 ### Creating/Updating the nuget package
-To create a Nuget package for use as a template you need to use the Nuget CLI as opposed to the dotnet CLI. 
+To create a Nuget package for use as a template you __must__ use the Nuget CLI (as opposed to dotnet pack in the dotnet CLI). 
 
 * [Install the CLI](https://docs.microsoft.com/en-us/nuget/install-nuget-client-tools#nugetexe-cli).
 * Navigate to folder cotaining the ```.nuspec``` file
