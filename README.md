@@ -70,7 +70,7 @@ dotnet nuget push StockportGovUK.AspNetCore.BoilerPlate.Service.#.#.#.nupkg -k <
 
 
 
-## Unistalling the boilerplate
+## Uninstalling the boilerplate
 Should you wish to uninstall template you can do this using the --uninstall switch.
 
 Note that you must provide the correct fully realised path to the folder from which the template was originally installed.
