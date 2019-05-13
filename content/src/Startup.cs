@@ -47,7 +47,7 @@ namespace boilerplate
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "boilderplate API");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "boilerplate API");
             });
             app.UseMvc();
         }
