@@ -1,5 +1,6 @@
 using System;
 using Microsoft.AspNetCore.Mvc;
+using System.Reflection;
 
 namespace boilerplate.Controllers
 {
@@ -11,8 +12,9 @@ namespace boilerplate.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var version = typeof(RuntimeEnvironment).GetTypeInfo().Assembly.GetCustomAttribute<AssemblyFileVersionAttribute>().Version;
-            return Ok($"{'Verson': '{version}', 'Name': 'boilerplate'}");
+            var name = Assembly.GetEntryAssembly().GetName().Name;
+            var version = Assembly.GetEntryAssembly().GetName().Version.ToString();
+            return Ok($"{{'Verson': '{version}', 'Name': '{name}'}}");
         }
     }
 }
