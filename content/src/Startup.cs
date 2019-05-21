@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using StockportGovUK.AspNetCore.Middleware;
+using StockportGovUK.AspNetCore.Availability;
+using StockportGovUK.AspNetCore.Availability.Middleware;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace boilerplate
@@ -29,6 +31,8 @@ namespace boilerplate
             });
 
             services.AddHttpClient();
+
+            services.AddAvailability();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -41,7 +45,8 @@ namespace boilerplate
             {
                 app.UseHsts();
             }
-
+            
+            app.UseMiddleware<Availability>();
             app.UseMiddleware<ExceptionHandling>();
             app.UseHttpsRedirection();
             app.UseSwagger();
