@@ -1,7 +1,9 @@
 using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using StockportGovUK.AspNetCore.Attributes.TokenAuthentication;
 using StockportGovUK.AspNetCore.Availability.Attributes;
+using StockportGovUK.AspNetCore.Availability.Managers;
 
 namespace boilerplate.Controllers
 {
@@ -11,6 +13,13 @@ namespace boilerplate.Controllers
     [TokenAuthentication]
     public class ValuesController : ControllerBase
     {
+        private AvailabilityManager _availabilityManager;
+
+        public ValuesController(AvailabilityManager availabilityManager)
+        {
+            _availabilityManager = availabilityManager;
+        }
+
         [HttpGet]
         [FeatureToggle(FeatureToggles.MyToggle)]
         public IActionResult Get()
@@ -20,9 +29,14 @@ namespace boilerplate.Controllers
 
         [HttpPost]
         [OperationalToggle(OperationalToggles.MyToggle)]
-        public IActionResult Post()
+        public async Task<IActionResult> Post()
         {
-            return Ok("{'value1': 1, 'value2': 2}");
+            if(await _availabilityManager.IsFeatureEnabled(FeatureToggles.MyToggle))
+            {
+                return Ok("{'value1': 1, 'value2': 2}");
+            }
+            
+            return NotFound();            
         }
     }
 }
