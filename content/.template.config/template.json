@@ -21,7 +21,6 @@
         }
     ],
     "postActions": [{
-        "condition": "(!skipRestore)",
         "description": "Restore NuGet packages required by the core of this project.",
         "manualInstructions": [
           { "text": "Run 'dotnet restore'" }
