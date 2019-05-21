@@ -1,6 +1,7 @@
 using System;
 using Microsoft.AspNetCore.Mvc;
 using StockportGovUK.AspNetCore.Attributes.TokenAuthentication;
+using StockportGovUK.AspNetCore.Availability.Attributes;
 
 namespace boilerplate.Controllers
 {
@@ -11,7 +12,15 @@ namespace boilerplate.Controllers
     public class ValuesController : ControllerBase
     {
         [HttpGet]
+        [FeatureToggle(FeatureToggles.MyToggle)]
         public IActionResult Get()
+        {
+            return Ok("{'value1': 1, 'value2': 2}");
+        }
+
+        [HttpPost]
+        [OperationalToggle(OperationalToggles.MyToggle)]
+        public IActionResult Post()
         {
             return Ok("{'value1': 1, 'value2': 2}");
         }
