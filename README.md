@@ -78,3 +78,10 @@ Note that you must provide the correct fully realised path to the folder from wh
 ```
 dotnet new --uninstall \C\The\Fully\Resolved\Path\service-boilerplate
 ```
+
+## Useful Resources
+* [Dotnet new, command reference](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-new?tabs=netcore22)
+* [Custom template for dotnet new, Microsoft documentation](https://docs.microsoft.com/en-us/dotnet/core/tools/custom-templates)
+* [Dotnet new, templating home github](https://github.com/dotnet/templating)
+* [Dotnet new, templating schema reference](https://github.com/dotnet/templating/wiki/Reference-for-template.json)
+* [Blog: templates getting started](https://devblogs.microsoft.com/dotnet/how-to-create-your-own-templates-for-dotnet-new/)

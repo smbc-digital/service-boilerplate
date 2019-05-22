@@ -13,7 +13,7 @@
     "sourceName": "boilerplate",
     "sources": [
         {
-        "modifiers": [
+            "modifiers": [
                 {
                 "exclude": [ ".vs/**", ".git/**", ".vscode/**", "obj/**", "bin/**" ]
                 }
@@ -23,14 +23,15 @@
     "primaryOutputs": [
         { "path": "src/boilerplate.csproj" },
         { "path": "tests/boilerplate-tests.csproj" }
-      ],
-    "postActions": [{
-        "description": "Restore NuGet packages required by the core of this project.",
-        "manualInstructions": [
-          { "text": "Run 'dotnet restore'" }
-        ],
-        "actionId": "210D431B-A78B-4D2F-B762-4ED3E3EA9025",
-        "continueOnError": true
-      }
+    ],
+    "postActions": [
+        {
+            "description": "Restore NuGet packages required by the core of this project.",
+            "manualInstructions": [
+                { "text": "Run 'dotnet restore'" }
+            ],
+            "actionId": "210D431B-A78B-4D2F-B762-4ED3E3EA9025",
+            "continueOnError": true
+        }
     ]
 }
