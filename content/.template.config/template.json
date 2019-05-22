@@ -21,8 +21,8 @@
         }
     ],
     "primaryOutputs": [
-        { "path": "src/boilerplate.csproj" },
-        { "path": "tests/boilerplate.csproj" }
+        { "path": "src\\boilerplate.csproj" },
+        { "path": "tests\\boilerplate-tests.csproj" }
       ],
     "postActions": [{
         "description": "Restore NuGet packages required by the core of this project.",
