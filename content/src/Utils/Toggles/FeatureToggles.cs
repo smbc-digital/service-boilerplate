@@ -1,6 +1,6 @@
 using System;
 
-namespace boilerplate
+namespace boilerplate.Utils.Toggles
 {
     public static class FeatureToggles
     {

@@ -1,5 +1,5 @@
-using System;
 using System.Threading.Tasks;
+using boilerplate.Utils.Toggles;
 using Microsoft.AspNetCore.Mvc;
 using StockportGovUK.AspNetCore.Attributes.TokenAuthentication;
 using StockportGovUK.AspNetCore.Availability.Attributes;
@@ -13,9 +13,9 @@ namespace boilerplate.Controllers
     [TokenAuthentication]
     public class ValuesController : ControllerBase
     {
-        private AvailabilityManager _availabilityManager;
+        private IAvailabilityManager _availabilityManager;
 
-        public ValuesController(AvailabilityManager availabilityManager)
+        public ValuesController(IAvailabilityManager availabilityManager)
         {
             _availabilityManager = availabilityManager;
         }

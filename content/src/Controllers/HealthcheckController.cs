@@ -1,4 +1,3 @@
-using System;
 using Microsoft.AspNetCore.Mvc;
 using System.Reflection;
 
@@ -12,9 +11,8 @@ namespace boilerplate.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var name = Assembly.GetEntryAssembly().GetName().Name;
-            var version = Assembly.GetEntryAssembly().GetName().Version.ToString();
-            return Ok($"{{'Verson': '{version}', 'Name': '{name}'}}");
+            var assembly = Assembly.GetEntryAssembly().GetName();
+            return Ok($"{{'Verson': '{assembly.Version.ToString()}', 'Name': '{assembly.Name}'}}");
         }
     }
 }
