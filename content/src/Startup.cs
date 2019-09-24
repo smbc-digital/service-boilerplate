@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using StockportGovUK.AspNetCore.Middleware;
 using StockportGovUK.AspNetCore.Availability;
 using StockportGovUK.AspNetCore.Availability.Middleware;
+using StockportGovUK.AspNetCore.Gateways;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace boilerplate
@@ -45,6 +46,8 @@ namespace boilerplate
             services.AddHttpClient();
 
             services.AddAvailability();
+
+            services.AddResilientHttpClients<IGateway, Gateway>(Configuration);
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
