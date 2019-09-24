@@ -11,11 +11,12 @@ namespace boilerplate.Controllers
     [Route("api/v1/[Controller]")]
     [ApiController]
     [TokenAuthentication]
-    public class ValuesController : ControllerBase
+    public class HomeController : ControllerBase
     {
         private IAvailabilityManager _availabilityManager;
 
-        public ValuesController(IAvailabilityManager availabilityManager)
+        [OperationalToggle(OperationalToggles.MyToggle)]
+        public HomeController(IAvailabilityManager availabilityManager)
         {
             _availabilityManager = availabilityManager;
         }
@@ -24,19 +25,14 @@ namespace boilerplate.Controllers
         [FeatureToggle(FeatureToggles.MyToggle)]
         public IActionResult Get()
         {
-            return Ok("{'value1': 1, 'value2': 2}");
+            return Ok();
         }
 
         [HttpPost]
-        [OperationalToggle(OperationalToggles.MyToggle)]
+        [FeatureToggle(FeatureToggles.MyToggle)]
         public async Task<IActionResult> Post()
         {
-            if(await _availabilityManager.IsFeatureEnabled(FeatureToggles.MyToggle))
-            {
-                return Ok("{'value1': 1, 'value2': 2}");
-            }
-            
-            return NotFound();            
+            return Ok();
         }
     }
 }
