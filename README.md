@@ -76,6 +76,10 @@ Should you wish to uninstall template you can do this using the --uninstall swit
 Note that you must provide the correct fully realised path to the folder from which the template was originally installed.
 
 ```
+dotnet new --uninstall StockportGovUK.AspNetCore.BoilerPlate.Service
+```
+
+```
 dotnet new --uninstall \C\The\Fully\Resolved\Path\service-boilerplate
 ```
 
