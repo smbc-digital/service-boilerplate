@@ -1,6 +1,6 @@
 # Stockport WebAPI boilerplate.
 
-This is the basis of a [custom .Net new template](https://docs.microsoft.com/en-gb/dotnet/core/tools/custom-templates) it is used to generate restful WebApi project with default StockportGovUK setup and behaviours enabled.
+This is the basis of a [custom .Net template](https://docs.microsoft.com/en-gb/dotnet/core/tools/custom-templates) it is used to generate restful WebApi project with default StockportGovUK setup and behaviours enabled.
 
 # Installation & Usage
 
@@ -9,7 +9,7 @@ This is the basis of a [custom .Net new template](https://docs.microsoft.com/en-
 To register this application template with the dotnet cli 
 
 ```
-dotnet new --install StockportGovUK.AspNet.BoilerPlate.Service
+dotnet new --install StockportGovUK.AspNetCore.BoilerPlate.Service
 ```
 ## Installation From Git/Folder
 
