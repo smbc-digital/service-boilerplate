@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "address_finder_service": {
+    "boilerplate": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "api/values",

@@ -11,7 +11,7 @@ namespace boilerplate.Controllers
     [Route("api/v1/[Controller]")]
     [ApiController]
     [TokenAuthentication]
-    [OperationalToggle(OperationalToggles.MyToggle)]
+    //[OperationalToggle(OperationalToggles.boilerplate)]
     public class HomeController : ControllerBase
     {
         private IAvailabilityManager _availabilityManager;
@@ -23,15 +23,15 @@ namespace boilerplate.Controllers
         }
 
         [HttpGet]
-        [FeatureToggle(FeatureToggles.MyToggle)]
+        // [FeatureToggle(FeatureToggles.MyToggle)]
         public IActionResult Get()
         {
             return Ok();
         }
 
         [HttpPost]
-        [FeatureToggle(FeatureToggles.MyToggle)]
-        public async Task<IActionResult> Post()
+        // [FeatureToggle(FeatureToggles.MyToggle)]
+        public IActionResult Post()
         {
             return Ok();
         }

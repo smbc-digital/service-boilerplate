@@ -43,8 +43,6 @@ namespace boilerplate
                 });
             });
 
-            services.AddHttpClient();
-
             services.AddAvailability();
 
             services.AddResilientHttpClients<IGateway, Gateway>(Configuration);

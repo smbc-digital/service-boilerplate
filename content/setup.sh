@@ -1,3 +1,4 @@
+#!/bin/bash
 echo Setting up your SMBC service...
 directory=$PWD
 echo Working directory: $directory
