@@ -11,11 +11,12 @@ namespace boilerplate.Controllers
     [Route("api/v1/[Controller]")]
     [ApiController]
     [TokenAuthentication]
+    [OperationalToggle(OperationalToggles.MyToggle)]
     public class HomeController : ControllerBase
     {
         private IAvailabilityManager _availabilityManager;
 
-        [OperationalToggle(OperationalToggles.MyToggle)]
+        
         public HomeController(IAvailabilityManager availabilityManager)
         {
             _availabilityManager = availabilityManager;
