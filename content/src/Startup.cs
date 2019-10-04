@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Collections.Generic;
+using boilerplate.Utils.HealthChecks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -26,7 +27,10 @@ namespace boilerplate
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
+            services.AddHealthChecks()
+                .AddCheck<TestHealthCheck>("TestHealthCheck");
+            services.AddAvailability();
+            services.AddResilientHttpClients<IGateway, Gateway>(Configuration);
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info { Title = "boilerplate API", Version = "v1" });
@@ -42,10 +46,6 @@ namespace boilerplate
                     {"Bearer", new string[] { }},
                 });
             });
-
-            services.AddAvailability();
-
-            services.AddResilientHttpClients<IGateway, Gateway>(Configuration);
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -62,12 +62,13 @@ namespace boilerplate
             app.UseMiddleware<Availability>();
             app.UseMiddleware<ExceptionHandling>();
             app.UseHttpsRedirection();
+            app.UseHealthChecks("/healthcheck", HealthCheckConfig.Options);
+            app.UseMvc();
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "boilerplate API");
             });
-            app.UseMvc();
         }
     }
 }
