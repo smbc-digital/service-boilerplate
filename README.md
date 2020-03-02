@@ -83,6 +83,21 @@ dotnet new --uninstall StockportGovUK.AspNetCore.BoilerPlate.Service
 dotnet new --uninstall \C\The\Fully\Resolved\Path\service-boilerplate
 ```
 
+## Makefile
+There are some additional scripts available within the boilerplate, which can perform certain tasks. They are as follows:
+
+Project setup including initalising git-crypt
+```
+make setup
+```
+
+Pipeline creation:
+
+The pipeline creation script has some requirments, they are listed within the make help command
+```
+make pipeline
+```
+
 ## Useful Resources
 * [Dotnet new, command reference](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-new?tabs=netcore22)
 * [Custom template for dotnet new, Microsoft documentation](https://docs.microsoft.com/en-us/dotnet/core/tools/custom-templates)
@@ -178,4 +193,3 @@ public void ConfigureServices(IServiceCollection services)
         }
 ```
 * At this point you should be able to run the service and be met with the swagger page. The homecontroller post enpoint will accept any json sent to it and return an OK back to the form builder if hit. We want to accept an object/json of data and apply it to a model. Steps to do this are coming. 
-
