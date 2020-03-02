@@ -28,3 +28,5 @@ echo STEP 3 : Pushing changes...
 git add .
 git commit -m "SCRIPTED : Initial Commit :rocket:"
 git push -u origin master
+
+echo STEP 4 : Run make pipeline, to configre the pipeline creation

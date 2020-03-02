@@ -1,0 +1,4 @@
+Project automation targets:
+   coverage: Run service units tests
+   pipeline: Creates project pipeline
+   setup: Setup base service project
