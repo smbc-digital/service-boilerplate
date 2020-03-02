@@ -89,3 +89,93 @@ dotnet new --uninstall \C\The\Fully\Resolved\Path\service-boilerplate
 * [Dotnet new, templating home github](https://github.com/dotnet/templating)
 * [Dotnet new, templating schema reference](https://github.com/dotnet/templating/wiki/Reference-for-template.json)
 * [Blog: templates getting started](https://devblogs.microsoft.com/dotnet/how-to-create-your-own-templates-for-dotnet-new/)
+
+## Instructions to create new micro service to be used for form builder forms.
+* Create a new service using this boiler plate: dotnet new smbc-webapi -n [formname]service
+* launchSettings.json: Change the port numbers to be unique to this service and amend launchUrl: "swagger"
+* appsettings.secrets.json:  "TokenAuthentication:Key": "[guidfromformjson]"
+* appsettings.json: add HttpClientConfiguration settings for VerintServiceGateway
+* Startup.cs: usings:
+```
+using deletemeservice.Utils.HealthChecks;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using StockportGovUK.AspNetCore.Availability;
+using StockportGovUK.AspNetCore.Middleware;
+using StockportGovUK.NetStandard.Gateways;
+using Swashbuckle.AspNetCore.Swagger;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+```
+```
+public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().AddMvcOptions(o => o.AllowEmptyInputInBodyModelBinding = true);
+            services.AddHealthChecks()
+                .AddCheck<TestHealthCheck>("TestHealthCheck");
+            services.AddAvailability();
+            services.AddResilientHttpClients<IGateway, Gateway>(Configuration);
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "deletemeservice API", Version = "v1" });
+                c.AddSecurityDefinition("Bearer", new ApiKeyScheme
+                {
+                    Description = "Authorization using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
+                    Name = "Authorization",
+                    In = "header",
+                    Type = "apiKey"
+                });
+                c.AddSecurityRequirement(new Dictionary<string, IEnumerable<string>>
+                {
+                    {"Bearer", new string[] { }},
+                });
+            });
+        }
+
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseHsts();
+            }
+            
+            app.UseMiddleware<ExceptionHandling>();
+            app.UseHttpsRedirection();
+            app.UseHealthChecks("/healthcheck", HealthCheckConfig.Options);
+            app.UseMvc();
+            app.UseSwagger();
+            var swaggerPrefix = env.EnvironmentName == "local" ? string.Empty : "/[servicename]";
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint($"{swaggerPrefix}/swagger/v1/swagger.json", "[servicename] API");
+            });
+        }
+```
+* HomeController.cs: Post: 
+```
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody]object model)
+        {
+            _logger.LogDebug(JsonConvert.SerializeObject(model));
+            try
+            {
+                //var result = await _crmService.CreateCase(model);
+                return Ok();//
+            }
+            catch (Exception ex)
+            {
+                _logger.LogWarning($"HomeController an exception has occured, ex: {ex}");
+                return StatusCode(500, ex);
+            }
+        }
+```
+* At this point you should be able to run the service and be met with the swagger page. The homecontroller post enpoint will accept any json sent to it and return an OK back to the form builder if hit. We want to accept an object/json of data and apply it to a model. Steps to do this are coming. 
+
