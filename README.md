@@ -192,4 +192,28 @@ public void ConfigureServices(IServiceCollection services)
             }
         }
 ```
-* At this point you should be able to run the service and be met with the swagger page. The homecontroller post enpoint will accept any json sent to it and return an OK back to the form builder if hit. We want to accept an object/json of data and apply it to a model. Steps to do this are coming. 
+* At this point you should be able to run the service and be met with the swagger page. The homecontroller post enpoint will accept any json sent to it and return an OK back to the form builder if hit. We want to accept an object/json of data and apply it to a model. Steps to do this are coming.
+* To convert the json coming from the form builder to the model needed for the service: Complete the form as normal and submit the data to the existing Post in the service. Inspect the model that's been recieved.
+```
+{{  "firstName": "ffffff",  "lastName": "llllll",  "email": "asdf@asdf.com",  "phone": "32233223",  "addresslineone": "aaaaaaaa",  "addresslinetwo": "bbbbbbbbb",  "town": "ttttttt",  "postcode": "sk2 4dd"}}
+```
+* Remove the outer {} and paste into http://json2csharp.com/ and click convert. This should create:
+```
+public class RootObject
+{
+    public string firstName { get; set; }
+    public string lastName { get; set; }
+    public string email { get; set; }
+    public string phone { get; set; }
+    public string addresslineone { get; set; }
+    public string addresslinetwo { get; set; }
+    public string town { get; set; }
+    public string postcode { get; set; }
+}
+```
+* Rename the RootObject to the Model you want to store the data in (ReportAnIssue). Place this in a folder called Model and then change the Post to 
+```     
+public async Task<IActionResult> Post([FromBody]ReportAnIssue model)
+```
+
+* You'll then perhaps want to add in a crmservice to push the data to verint. 
