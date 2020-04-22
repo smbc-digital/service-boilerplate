@@ -1,5 +1,3 @@
-using System;
-
 namespace boilerplate.Utils.Toggles
 {
     public static class FeatureToggles

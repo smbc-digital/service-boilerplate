@@ -10,7 +10,7 @@ namespace boilerplate.Utils.HealthChecks
 {
     public static class HealthCheckConfig
     {
-        private static readonly AssemblyName _assembly = Assembly.GetEntryAssembly().GetName();
+        private static readonly AssemblyName Assembly = System.Reflection.Assembly.GetEntryAssembly()?.GetName();
 
         public static HealthCheckOptions Options => new HealthCheckOptions
         {
@@ -26,7 +26,7 @@ namespace boilerplate.Utils.HealthChecks
                     case HealthStatus.Unhealthy:
                         await c.Response.WriteAsync(ProcessUnhealthy(r));
                         break;
-                    default:
+                    case HealthStatus.Degraded:
                         break;
                 }
             }
@@ -37,8 +37,8 @@ namespace boilerplate.Utils.HealthChecks
             return JsonConvert.SerializeObject(new
                 {
                     application = new {
-                        name = _assembly.Name,
-                        version = _assembly.Version.ToString(),
+                        name = Assembly.Name,
+                        version = Assembly.Version.ToString(),
                         status = report.Status.ToString(),
                     },
                     checks = report.Entries.Select(e =>
@@ -58,8 +58,8 @@ namespace boilerplate.Utils.HealthChecks
             return JsonConvert.SerializeObject(new
                 {
                     application = new {
-                        name = _assembly.Name,
-                        version = _assembly.Version.ToString(),
+                        name = Assembly.Name,
+                        version = Assembly.Version.ToString(),
                         status = report.Status.ToString(),
                     },
                     checks = report.Entries.Select(e =>

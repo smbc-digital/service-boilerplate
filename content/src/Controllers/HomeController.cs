@@ -1,8 +1,5 @@
-using System.Threading.Tasks;
-using boilerplate.Utils.Toggles;
 using Microsoft.AspNetCore.Mvc;
 using StockportGovUK.AspNetCore.Attributes.TokenAuthentication;
-using StockportGovUK.AspNetCore.Availability.Attributes;
 using StockportGovUK.AspNetCore.Availability.Managers;
 
 namespace boilerplate.Controllers
@@ -11,11 +8,9 @@ namespace boilerplate.Controllers
     [Route("api/v1/[Controller]")]
     [ApiController]
     [TokenAuthentication]
-    //[OperationalToggle(OperationalToggles.boilerplate)]
     public class HomeController : ControllerBase
     {
         private IAvailabilityManager _availabilityManager;
-
         
         public HomeController(IAvailabilityManager availabilityManager)
         {
@@ -23,14 +18,12 @@ namespace boilerplate.Controllers
         }
 
         [HttpGet]
-        // [FeatureToggle(FeatureToggles.MyToggle)]
         public IActionResult Get()
         {
             return Ok();
         }
 
         [HttpPost]
-        // [FeatureToggle(FeatureToggles.MyToggle)]
         public IActionResult Post()
         {
             return Ok();

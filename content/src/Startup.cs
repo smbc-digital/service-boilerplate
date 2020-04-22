@@ -1,16 +1,16 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using System.Collections.Generic;
 using boilerplate.Utils.HealthChecks;
+using boilerplate.Utils.ServiceCollectionExtensions;
+using boilerplate.Utils.StorageProvider;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using StockportGovUK.AspNetCore.Middleware;
 using StockportGovUK.AspNetCore.Availability;
 using StockportGovUK.AspNetCore.Availability.Middleware;
 using StockportGovUK.NetStandard.Gateways;
-using Swashbuckle.AspNetCore.Swagger;
 
 namespace boilerplate
 {
@@ -26,31 +26,18 @@ namespace boilerplate
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddHealthChecks()
-                .AddCheck<TestHealthCheck>("TestHealthCheck");
-            services.AddAvailability();
+            services.AddControllers();
+            services.AddStorageProvider(Configuration);
             services.AddResilientHttpClients<IGateway, Gateway>(Configuration);
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new Info { Title = "boilerplate API", Version = "v1" });
-                c.AddSecurityDefinition("Bearer", new ApiKeyScheme
-                {
-                    Description = "Authorization using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
-                    Name = "Authorization",
-                    In = "header",
-                    Type = "apiKey"
-                });
-                c.AddSecurityRequirement(new Dictionary<string, IEnumerable<string>>
-                {
-                    {"Bearer", new string[] { }},
-                });
-            });
+            services.AddAvailability();
+            services.AddSwagger();
+            services.AddHealthChecks()
+                    .AddCheck<TestHealthCheck>("TestHealthCheck");
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
+            if (env.IsEnvironment("local"))
             {
                 app.UseDeveloperExceptionPage();
             }
@@ -58,16 +45,20 @@ namespace boilerplate
             {
                 app.UseHsts();
             }
-            
-            app.UseMiddleware<Availability>();
-            app.UseMiddleware<ExceptionHandling>();
+
             app.UseHttpsRedirection();
+            app.UseRouting();
+            app.UseEndpoints(endpoints => endpoints.MapControllers());
+
+            app.UseMiddleware<Availability>();
+            app.UseMiddleware<ApiExceptionHandling>();
+            
             app.UseHealthChecks("/healthcheck", HealthCheckConfig.Options);
-            app.UseMvc();
+
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "boilerplate API");
+                c.SwaggerEndpoint($"{(env.IsEnvironment("local") ? string.Empty : "/")}/swagger/v1/swagger.json", "boilerplate API");
             });
         }
     }
