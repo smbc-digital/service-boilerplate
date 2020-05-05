@@ -8,6 +8,8 @@ echo Whats the url of the remote repository?
 read repo
 git init
 git remote add origin $repo
+echo "#hide setup and pipeline" >> .gitignore
+echo "setup.sh pipeline.sh" >> .gitignore
 
 echo STEP 2 : Encrypting secrets...
 git-crypt init
