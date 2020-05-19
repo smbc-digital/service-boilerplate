@@ -294,7 +294,7 @@ node_modules/
 *.plg
 
 #Shell scripts
-./pipeline.sh ./setup.sh
+pipeline.sh setup.sh
 
 # Visual Studio 6 workspace options file
 *.opt
