@@ -59,7 +59,7 @@ namespace boilerplate
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint($"{(env.IsEnvironment("local") ? string.Empty : "/")}/swagger/v1/swagger.json", "boilerplate API");
+                c.SwaggerEndpoint("v1/swagger.json", "boilerplate API");
             });
         }
     }
