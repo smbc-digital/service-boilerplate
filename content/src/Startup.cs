@@ -7,10 +7,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using StockportGovUK.AspNetCore.Middleware;
 using StockportGovUK.AspNetCore.Availability;
 using StockportGovUK.AspNetCore.Availability.Middleware;
 using StockportGovUK.NetStandard.Gateways;
+using StockportGovUK.NetStandard.Gateways.Extensions;
 
 namespace boilerplate
 {
@@ -29,7 +29,7 @@ namespace boilerplate
             services.AddControllers()
                     .AddNewtonsoftJson();
             services.AddStorageProvider(Configuration);
-            services.AddResilientHttpClients<IGateway, Gateway>(Configuration);
+            services.AddHttpClient<IGateway, Gateway>(Configuration, "IGatewayConfig");
             services.AddAvailability();
             services.AddSwagger();
             services.AddHealthChecks()
@@ -38,21 +38,15 @@ namespace boilerplate
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsEnvironment("local"))
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseHsts();
-            }
-
-            app.UseHttpsRedirection();
-            app.UseRouting();
-            app.UseEndpoints(endpoints => endpoints.MapControllers());
+            app.UseExceptionHandler($"/api/v1/error{(env.IsDevelopment() ? "/local" : string.Empty)}");
 
             app.UseMiddleware<Availability>();
-            app.UseMiddleware<ApiExceptionHandling>();
+
+            app.UseHttpsRedirection();
+
+            app.UseRouting();
+            
+            app.UseEndpoints(endpoints => endpoints.MapControllers());
             
             app.UseHealthChecks("/healthcheck", HealthCheckConfig.Options);
 
