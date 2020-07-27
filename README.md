@@ -15,7 +15,7 @@ dotnet new --install StockportGovUK.AspNetCore.BoilerPlate.Service
 
 You also can register the template from a local directory  with the dotnet cli 
 
-* Clone this repository to a folder locally
+* Clone this repository to a folder locally or ensure you have the latest version pulled if you already have the repository cloned
 * Navigate to the ```service-boilerplate/content``` folder
 * install the the boilerplate using the --install switch
 
