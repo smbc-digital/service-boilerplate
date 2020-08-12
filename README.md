@@ -3,8 +3,8 @@
 This is the basis of a [custom .Net template](https://docs.microsoft.com/en-gb/dotnet/core/tools/custom-templates) it is used to generate restful WebApi project with default StockportGovUK setup and behaviours enabled.
 
 # Required repos
-shared-gpg-keys 
-internal-provisioning 
+* shared-gpg-keys
+* internal-provisioning 
 
 # Installation & Usage
 
