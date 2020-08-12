@@ -132,7 +132,7 @@ ExampleTemplateService
 ```
 The Project Dll
 ```
-example_template_service.dll
+example_template_service
 ```
 And the sub app key
 ```
