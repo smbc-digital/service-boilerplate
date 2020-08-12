@@ -2,6 +2,10 @@
 
 This is the basis of a [custom .Net template](https://docs.microsoft.com/en-gb/dotnet/core/tools/custom-templates) it is used to generate restful WebApi project with default StockportGovUK setup and behaviours enabled.
 
+# Required repos
+shared-gpg-keys 
+internal-provisioning 
+
 # Installation & Usage
 
 ## Installation From Nuget (recommended)
@@ -91,13 +95,48 @@ Project setup including initalising git-crypt
 ```
 make setup
 ```
-This asks for the url of the remote repo and the relative path to you local gpg keystore.
+It will then ask you to enter the path to your service
+```
+/c/Code/example-template-service
+```
+Then the remote SSH url of the repo
+```
+git@github.com:smbc-digital/example-template-service.git
+```
+And finally is the relative path to where you have you shared-gpg-keys folder cloned, if its in the Code folder it would just be:
+```
+../shared-gpg-keys
+```
 
 Pipeline creation:
 
 The pipeline creation script has some requirments, they are listed within the make help command
 ```
 make pipeline
+```
+It will ask for the relative path to where internal-provisioning is cloned, if its in the same folder as the gpg keys, this will just be:
+```
+../internal-provisioning
+```
+Then enter the SSH url again
+```
+git@github.com:smbc-digital/example-template-service.git
+```
+The project name as you want it to appear on TeamCity
+```
+Example Template Service
+```
+The Project Id
+```
+ExampleTemplateService
+```
+The Project Dll
+```
+example_template_service.dll
+```
+And the sub app key
+```
+ExampleTemplateService
 ```
 
 ## Useful Resources
