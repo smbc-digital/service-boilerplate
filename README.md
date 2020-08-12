@@ -87,7 +87,7 @@ dotnet new --uninstall StockportGovUK.AspNetCore.BoilerPlate.Service
 dotnet new --uninstall \C\The\Fully\Resolved\Path\service-boilerplate
 ```
 
-## Makefile
+## Make Setup
 There are some additional scripts available within the boilerplate, which can perform certain tasks. When run, these ask a set of questions. These are all mandatory to complete the given task.
 Please make sure you have the appropriate permissions to both Git and Team City before running these as the errors that occur aren't always the clearest.
 
@@ -108,7 +108,7 @@ And finally is the relative path to where you have you shared-gpg-keys folder cl
 ../shared-gpg-keys
 ```
 
-Pipeline creation:
+## Make Pipeline
 
 The pipeline creation script has some requirments, they are listed within the make help command
 ```
