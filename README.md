@@ -87,6 +87,9 @@ dotnet new --uninstall StockportGovUK.AspNetCore.BoilerPlate.Service
 dotnet new --uninstall \C\The\Fully\Resolved\Path\service-boilerplate
 ```
 
+## Update the readme
+The boiler plate provides a default readme file, the readme file is important for providing context for the service and enable people to quickly onboard themselves when updating or fixing the service **please make sure you upate the readme file to reflect the usage and setup of your service**
+
 ## Make Setup
 There are some additional scripts available within the boilerplate, which can perform certain tasks. When run, these ask a set of questions. These are all mandatory to complete the given task.
 Please make sure you have the appropriate permissions to both Git and Team City before running these as the errors that occur aren't always the clearest.
