@@ -24,7 +24,13 @@ echo STEP 2b : Adding collaborators...
 cd $directory
 $keystore/add-collaborators.sh
 
-echo STEP 3 : Pushing changes...
+echo STEP 3 : Copying base secrets 
+echo Whats the relative path to your base secrets repository?
+read secrets
+
+# what to do here?
+
+echo STEP 4 : Pushing changes...
 git add .
 git commit -m "SCRIPTED : Initial Commit :rocket:"
 git push -u origin master
