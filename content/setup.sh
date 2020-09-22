@@ -25,7 +25,7 @@ cd $directory
 $keystore/add-collaborators.sh
 
 echo STEP 3 : Copying base secrets 
-echo Please ensure you have a local unlocked copy of secrets-serivce-boilerplate repo (git@github.com:smbc-digital/secrets-service-boilerplate.git).
+echo Please ensure you have a local unlocked copy of secrets-service-boilerplate repo git@github.com:smbc-digital/secrets-service-boilerplate.git.
 echo Whats the relative path to your base secrets repository?
 read secrets
 cd $secrets
@@ -34,6 +34,7 @@ git pull
 
 #copy files
 cp -R $secrets/*.json $directory/src/config/secrets
+echo Secrets successfully added
 cd $directory
 
 echo STEP 4 : Pushing changes...
