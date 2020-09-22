@@ -33,8 +33,8 @@ cd $secrets
 git pull
 
 #copy files
-
-# what to do here?
+cp -R $secrets/*.json $directory/src/config/secrets
+cd $directory
 
 echo STEP 4 : Pushing changes...
 git add .
