@@ -5,6 +5,7 @@ This is the basis of a [custom .Net template](https://docs.microsoft.com/en-gb/d
 # Required repos
 * shared-gpg-keys
 * internal-provisioning 
+* secrets-service-boilerplate 
 
 # Installation & Usage
 
