@@ -145,7 +145,7 @@ ExampleTemplateService
 
 ## Setup on scninthub (int1, int2, qa1, stg1, prd1, prd2)
 On each box:
-* **Log on using RDP Creds (dts-secrets), not your .adm**
+* ****Log on using RDP Creds (dts-secrets), not your .adm****
 * Open IIS Manager
 * Add a new application to sites/IntegrationHubApi
 * Alias is the name of the service (PascalCase)
