@@ -143,6 +143,20 @@ And the sub app key
 ExampleTemplateService
 ```
 
+## Setup on scninthub (int1, int2, qa1, stg1, prd1, prd2)
+On each box:
+* **Log on using RDP Creds (dts-secrets), not your .adm**
+* Open IIS Manager
+* Add a new application to sites/IntegrationHubApi
+* Alias is the name of the service (PascalCase)
+* Set the physical path to a new folder in C:\MicroServices using the name of the service eg. BookingServiceApi
+* Test settings and OK
+* Add a new Application Pool
+* Set .NET CLR version to 'No Managed Code' and OK
+* Open advanced settings on the new Application Pool and set Identity to custom using the RDP Creds
+* Open advanced settings on the application and set the Application Pool to the one just created
+* Recycle the Application Pool
+
 ## Useful Resources
 * [Dotnet new, command reference](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-new?tabs=netcore22)
 * [Custom template for dotnet new, Microsoft documentation](https://docs.microsoft.com/en-us/dotnet/core/tools/custom-templates)
